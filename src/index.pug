@@ -2,9 +2,10 @@ doctype html
 html(lang='en')
 head
     title Group 1
-    link(rel="stylesheet", href="/css/style.css")
+    link(rel="stylesheet", href="{{ url_for('static',filename='css/style.css') }}")
     //- script(src="../node_modules/jquery/dist/jquery.min.js")
     //- script(type="module", src="../src/script.js")
 body
-    div
-        p hello worldasdgsdgsadgasdg
+    div.main-container(id="selection-container")
+    div.main-container(id="input-container")
+    div.main-container(id="output-container")
