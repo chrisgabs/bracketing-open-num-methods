@@ -3,9 +3,38 @@
 <head>
   <title>Group 1</title>
   <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+  <script src="{{ url_for('static',filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+  <script type="module" src="{{ url_for('static',filename='script/script.js') }}"></script>
 </head>
 <body>
-  <div class="main-container" id="selection-container"></div>
-  <div class="main-container" id="input-container"></div>
-  <div class="main-container" id="output-container"></div>
+  <div id="master-container">
+    <div class="main-container" id="selection-container">
+      <label id="select-label">Select Numerical Method</label>
+      <select id="selection">
+        <option>Bisection</option>
+        <option>False Position</option>
+        <option>Newton Rhapson</option>
+        <option>Secant</option>
+        <option>Simple Fix Iteration</option>
+        <option>Fix Iteration</option>
+      </select>
+    </div>
+    <div class="main-container" id="input-container">
+      <div id="bisection">
+        <label>equation</label>
+        <input type="text" id="eq">
+        <label>upper limit</label>
+        <input type="text" id="xu">
+        <label>lower limit</label>
+        <input type="text" id="xl">
+        <label>stopping criterion</label>
+        <input type="text" id="crit">
+        <button id="calculate" type="button">calculate</button>
+      </div>
+    </div>
+    <div class="main-container" id="output-container">
+      <label>output</label>
+    </div>
+  </div>
 </body>
