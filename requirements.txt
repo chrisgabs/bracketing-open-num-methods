@@ -2,3 +2,4 @@ sympy
 pandas
 IPython
 numpy
+gunicorn
