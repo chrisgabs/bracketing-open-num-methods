@@ -61,7 +61,7 @@ def secant(eq, xa, xb, crit):
         error = get_error(x_b, x_a)
         x_b_temp = x_b
 
-        x_b = get_x_b(x_a, x_b,f_x_a, f_x_b, equation)
+        x_b = get_x_b(x_a, x_b,f_x_a, f_x_b)
         x_a = x_b_temp
         f_x_a = equation.subs(x, x_a)
         f_x_b = equation.subs(x, x_b)

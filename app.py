@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request
 import json
 from modules.bisection import bisection
-
+from modules.falseposition import false_position
+from modules.newtonrhapson import newton_rhapson
+from modules.secant import secant
+from modules.sifi import sifi
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -9,11 +13,31 @@ app = Flask(__name__)
 @app.route('/receiver', methods = ['POST'])
 def compute():
 	data = json.loads(request.get_data())
+	print(data)
+	method = data['selected']
+
 	eq = data['eq']
-	xl = float(data['xl'])
-	xu = float(data['xu'])
 	crit = float(data['crit'])
-	return bisection(eq, xl, xu, crit)
+	if method == "Non-linear":
+		return
+	elif method == "Newton Rhapson" or method == "Simple Fix Iteration":
+		x = float(data['x'])
+	else:
+		xl = float(data['xl'])
+		xu = float(data['xu'])
+
+	if method == "Bisection":
+		return bisection(eq, xl, xu, crit)
+	if method == "False Position":
+		return false_position(eq, xl, xu, crit)
+	if method == "Newton Rhapson":
+		return newton_rhapson(eq, x, crit)
+	if method == "Secant":
+		return secant(eq, xl, xu, crit)
+	if method == "Simple Fix Iteration":
+		print("jalkgaldgjs")
+		return sifi(eq, x, crit)
+	print("END OF METHOD")
 
 
 @app.route('/')

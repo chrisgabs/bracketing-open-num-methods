@@ -12,19 +12,28 @@ body
         div.main-container(id="selection-container")
             label#select-label Select Numerical Method
             select#selection
-                - const o = ["Bisection", "False Position", "Newton Rhapson", "Secant", "Simple Fix Iteration", "Fix Iteration"]
+                - const o = ["Bisection", "False Position", "Newton Rhapson", "Secant", "Simple Fix Iteration", "Non-linear"]
                 each i in o
                     option=i
         div.main-container(id="input-container")
-            div#bisection
-                label equation
-                input(type="text" id="eq")
-                label upper limit
-                input(type="text" id="xu")
-                label lower limit
-                input(type="text" id="xl")
-                label stopping criterion
-                input(type="text" id="crit")
-                button#calculate(type="button") calculate
+            div#field-container
+                div.in-con
+                    label equation
+                    input(type="text" id="eq")
+                div.in-con.four-input
+                    label upper limit
+                    input(type="text" id="xu")
+                div.in-con.four-input
+                    label lower limit
+                    input(type="text" id="xl")
+                div.in-con.three-input
+                    label x
+                    input(type="text" id="x")
+                div.in-con
+                    label stopping criterion
+                    input(type="text" id="crit")
+
+            button#calculate(type="button") calculate
         div.main-container(id="output-container")
             label output
+            div#table-container

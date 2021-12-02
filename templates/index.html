@@ -17,24 +17,37 @@
         <option>Newton Rhapson</option>
         <option>Secant</option>
         <option>Simple Fix Iteration</option>
-        <option>Fix Iteration</option>
+        <option>Non-linear</option>
       </select>
     </div>
     <div class="main-container" id="input-container">
-      <div id="bisection">
-        <label>equation</label>
-        <input type="text" id="eq">
-        <label>upper limit</label>
-        <input type="text" id="xu">
-        <label>lower limit</label>
-        <input type="text" id="xl">
-        <label>stopping criterion</label>
-        <input type="text" id="crit">
-        <button id="calculate" type="button">calculate</button>
+      <div id="field-container">
+        <div class="in-con">
+          <label>equation</label>
+          <input type="text" id="eq">
+        </div>
+        <div class="in-con four-input">
+          <label>upper limit</label>
+          <input type="text" id="xu">
+        </div>
+        <div class="in-con four-input">
+          <label>lower limit</label>
+          <input type="text" id="xl">
+        </div>
+        <div class="in-con three-input">
+          <label>x</label>
+          <input type="text" id="x">
+        </div>
+        <div class="in-con">
+          <label>stopping criterion</label>
+          <input type="text" id="crit">
+        </div>
       </div>
+      <button id="calculate" type="button">calculate</button>
     </div>
     <div class="main-container" id="output-container">
       <label>output</label>
+      <div id="table-container"></div>
     </div>
   </div>
 </body>

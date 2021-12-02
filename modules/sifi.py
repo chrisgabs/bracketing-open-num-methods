@@ -1,3 +1,4 @@
+from IPython.core.display import display
 import sympy
 from sympy.abc import x
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor
