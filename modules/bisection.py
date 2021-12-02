@@ -8,7 +8,7 @@ Original file is located at
 """
 
 from sympy.abc import x
-from sympy.parsing.sympy_parser import parse_expr
+from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor
 import pandas as pd
 from IPython.display import display, HTML
 import numpy as np
@@ -24,8 +24,9 @@ def get_error(curr_xr, prev_xr):
 """
 
 def bisection(eq, lower, upper, crit):
+    transformations = (standard_transformations + (implicit_multiplication_application,) + (convert_xor,))
         # INSERT VALUE FOR THE EQUATION
-    equation = parse_expr(eq)
+    equation = parse_expr(eq,transformations=transformations)
     # INSERT VALUE FOR XL
     xl = lower
     # INSERT VALUE FOR XU
@@ -59,8 +60,6 @@ def bisection(eq, lower, upper, crit):
         else:
             xl = xr
             xu = xu
-            
-        
 
         f_xl = equation.subs(x, xl)
         

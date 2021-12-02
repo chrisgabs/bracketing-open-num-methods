@@ -1,9 +1,7 @@
-import sys
-from flask import Flask, render_template, request, redirect, Response
-import random, json
+from flask import Flask, render_template, request
+import json
 
-from numpy import number
-from bisection import bisection
+from modules.bisection import bisection
 
 
 app = Flask(__name__)
