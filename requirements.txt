@@ -1,0 +1,4 @@
+sympy
+pandas
+IPython
+numpy
