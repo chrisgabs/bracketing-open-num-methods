@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&family=Titillium+Web:wght@300&display=swap");
+* {
+  font-size: 18px;
+}
+
 html, body {
   height: 100%;
   width: 100%;
@@ -54,13 +58,19 @@ body * {
 }
 #input-container button {
   height: 27px;
-  width: 80px;
+  width: 90px;
 }
 
 #field-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 0.15rem;
+}
+
+#buttons-container {
+  display: flex;
+  gap: 0.5rem;
 }
 
 #output-container {
@@ -72,7 +82,10 @@ body * {
 
 #table-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

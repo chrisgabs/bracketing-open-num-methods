@@ -1,12 +1,21 @@
+const fields = ["eq", "xu", "xl", "crit", "x"]
 let selected = "Bisection"
 
 $(function() {
 
     // $("#three-inputs").hide()
     // $("#six-inputs").hide()
+    
     updateInputFields()
-
+    $("#selection").val(selected)
+    
     $("#calculate").on("click", () => onCalculate())
+    $("#clear").on("click", () => {
+        fields.forEach(e => {
+            const id = "#" + e;
+            $(id).val("");
+        })
+    })
     $("#selection").on("change", () => {
         selected = $("#selection").val()
         updateInputFields()
@@ -33,7 +42,10 @@ function onCalculate() {
     data["selected"] = selected;
     data = JSON.stringify(data)
     $.post("receiver", data, function(response) {
-        $("#table-container").children().remove();
+        console.log(response)
+        const l = "<label>" + selected + "</label>"
+        $("#table-container").children().remove()
+        $("#table-container").append(l)
         $("#table-container").append(response)
         $("#table-container").hide()
         $("#table-container").fadeIn()

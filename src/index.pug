@@ -32,8 +32,9 @@ body
                 div.in-con
                     label stopping criterion
                     input(type="text" id="crit")
-
-            button#calculate(type="button") calculate
+            div#buttons-container
+                button#clear(type="button") clear
+                button#calculate(type="button") calculate
         div.main-container(id="output-container")
             label output
             div#table-container
