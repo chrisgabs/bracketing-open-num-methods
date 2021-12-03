@@ -40,13 +40,19 @@ function onCalculate() {
     data["selected"] = selected;
     data = JSON.stringify(data)
     $.post("receiver", data, function(response) {
-        const recieved = JSON.parse(response)
-        const final = "<label> Root = " + recieved.final + "</label>"
-        const selectedLabel = "<label>" + selected + "</label>"
+        console.log(response)
+        let received = response;
         $("#table-container").children().remove()
+        const selectedLabel = "<label>" + selected + "</label>"
         $("#table-container").append(selectedLabel)
+        try {
+            received = JSON.parse(response)
+        }catch(err) {
+            $("#table-container").append(received)
+        }
+        const final = "<label> Root = " + received.final + "</label>"
         $("#table-container").append(final)
-        $("#table-container").append(recieved.table)
+        $("#table-container").append(received.table)
         $("#table-container").hide()
         $("#table-container").fadeIn()
     })

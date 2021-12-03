@@ -32,27 +32,27 @@ def compute():
 		# TODO: parse final answer for secant and non-linear (ask arian)
 		if method == "Bisection":
 			d = bisection(eq, xl, xu, crit)
-			toReturn['final'] = d.iloc[-1].at["xr"]
+			toReturn['final'] = str(d.iloc[-1].at["xr"])
 			toReturn['table'] = d.to_html()
 		if method == "False Position":
 			d = false_position(eq, xl, xu, crit)
-			toReturn['final'] = d.iloc[-1].at["xr"]
+			toReturn['final'] = str(d.iloc[-1].at["xr"])
 			toReturn['table'] = d.to_html()
 		if method == "Newton Rhapson":
 			d = newton_rhapson(eq, x, crit)
-			toReturn['final'] = d.iloc[-1].at["f_x"]
+			toReturn['final'] = str(d.iloc[-1].at["f_x"])
 			toReturn['table'] = d.to_html()
 		if method == "Secant":
 			d = secant(eq, xl, xu, crit)
 		if method == "Simple Fix Iteration":
 			d = sifi(eq, x, crit)
-			toReturn['final'] = d.iloc[-1].at["f_x"]
+			toReturn['final'] = str(d.iloc[-1].at["f_x"])
 			toReturn['table'] = d.to_html()
 		
 		return json.dumps(toReturn)
 	except Exception as e:
 		print(e)
-		return "<p>Invalid Input</p>"
+		return "<p><b>Invalid Input</b></p>"
 
 @app.route('/')
 def output():
