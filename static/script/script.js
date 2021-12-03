@@ -56,13 +56,18 @@ function updateInputFields() {
     // $("#input-container").children().fadeOut();
     if (selected == "Non-linear") {
         // six inputs
+        $(".four-input").hide()
+        $(".three-input").hide()
+        $(".six-input").show()
     } else if (selected == "Simple Fix Iteration" || selected == "Newton Rhapson") {
         // three inputs
+        $(".six-input").hide()
         $(".four-input").hide()
         $(".three-input").show()
     } else {
-        $(".three-input").hide()
         // four inputs
+        $(".six-input").hide()
+        $(".three-input").hide()
         $(".four-input").show()
     }
 }

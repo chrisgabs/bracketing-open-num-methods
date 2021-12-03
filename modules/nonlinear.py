@@ -60,8 +60,9 @@ def nonlinear(eq1_equal_side, eq1_expression_side, eq2_equal_side, eq2_expressio
         print(arr)
         df = df.append(dict(zip(df.columns, arr)), ignore_index=True)
 
-    print(df)
-nonlinear('y', '-x^2+x+0.75', 'x', '(x^2-y)/(5y)', 1.2, 1.2, 1)
+    return(df.to_html())
+
+# nonlinear('y', '-x^2+x+0.75', 'x', '(x^2-y)/(5y)', 1.2, 1.2, 1)
 
 
 

@@ -17,20 +17,44 @@ body
                     option=i
         div.main-container(id="input-container")
             div#field-container
-                div.in-con
-                    label equation
+                div.in-con.six-input
+                    input(type="text" id="eq1l")
+                    label =
+                    input(type="text" id="eq1r")
+                div.in-con.six-input
+                    input(type="text" id="eq2l")
+                    label =
+                    input(type="text" id="eq2r")
+                div.in-con.six-input
+                    label x0
+                    label =
+                    input(type="text" id="x0")
+                div.in-con.six-input
+                    label y0
+                    label =
+                    input(type="text" id="y0")
+
+                div.in-con.four-input.three-input
+                    label function
+                    label =
                     input(type="text" id="eq")
+
                 div.in-con.four-input
                     label upper limit
+                    label =
                     input(type="text" id="xu")
                 div.in-con.four-input
                     label lower limit
+                    label =
                     input(type="text" id="xl")
                 div.in-con.three-input
                     label x
+                    label =
                     input(type="text" id="x")
+
                 div.in-con
                     label stopping criterion
+                    label =
                     input(type="text" id="crit")
             div#buttons-container
                 button#clear(type="button") clear
