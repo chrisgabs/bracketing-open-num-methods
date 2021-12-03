@@ -56,4 +56,4 @@ def false_position(eq, lower, upper, crit):
         df = df.append(dict(zip(df.columns, arr)), ignore_index=True)
         iteration += 1
 
-    return (df.to_html())
+    return (df)

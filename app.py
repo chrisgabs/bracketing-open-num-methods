@@ -13,9 +13,11 @@ app = Flask(__name__)
 @app.route('/receiver', methods = ['POST'])
 def compute():
 	try:
+		print("===== REQUEST RECEIVED =====")
 		data = json.loads(request.get_data())
-		print(data)
 		method = data['selected']
+		toReturn = {"table":"","final":""}
+		print(data)
 
 		eq = data['eq']
 		crit = float(data['crit'])
@@ -27,16 +29,27 @@ def compute():
 			xl = float(data['xl'])
 			xu = float(data['xu'])
 
+		# TODO: parse final answer for secant and non-linear (ask arian)
 		if method == "Bisection":
-			return bisection(eq, xl, xu, crit)
+			d = bisection(eq, xl, xu, crit)
+			toReturn['final'] = d.iloc[-1].at["xr"]
+			toReturn['table'] = d.to_html()
 		if method == "False Position":
-			return false_position(eq, xl, xu, crit)
+			d = false_position(eq, xl, xu, crit)
+			toReturn['final'] = d.iloc[-1].at["xr"]
+			toReturn['table'] = d.to_html()
 		if method == "Newton Rhapson":
-			return newton_rhapson(eq, x, crit)
+			d = newton_rhapson(eq, x, crit)
+			toReturn['final'] = d.iloc[-1].at["f_x"]
+			toReturn['table'] = d.to_html()
 		if method == "Secant":
-			return secant(eq, xl, xu, crit)
+			d = secant(eq, xl, xu, crit)
 		if method == "Simple Fix Iteration":
-			return sifi(eq, x, crit)
+			d = sifi(eq, x, crit)
+			toReturn['final'] = d.iloc[-1].at["f_x"]
+			toReturn['table'] = d.to_html()
+		
+		return json.dumps(toReturn)
 	except Exception as e:
 		print(e)
 		return "<p>Invalid Input</p>"

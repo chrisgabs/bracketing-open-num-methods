@@ -70,5 +70,5 @@ def secant(eq, xa, xb, crit):
         df= df.append(dict(zip(df.columns, arr)), ignore_index=True)
         iteration+=1
 
-    return (df.to_html())
+    return (df)
 

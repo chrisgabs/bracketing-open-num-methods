@@ -2,9 +2,6 @@ const fields = ["eq", "xu", "xl", "crit", "x"]
 let selected = "Bisection"
 
 $(function() {
-
-    // $("#three-inputs").hide()
-    // $("#six-inputs").hide()
     
     updateInputFields()
     $("#selection").val(selected)
@@ -26,6 +23,7 @@ $(function() {
 function onCalculate() {
     let fields = []
     if (selected == "Non-linear") {
+        //TODO: Integrate non-linear
         // fields = ["eq", "xu", "xl", "crit"]
     }else if (selected == "Simple Fix Iteration" || selected == "Newton Rhapson"){
         fields = ["eq", "x", "crit"]
@@ -42,11 +40,13 @@ function onCalculate() {
     data["selected"] = selected;
     data = JSON.stringify(data)
     $.post("receiver", data, function(response) {
-        console.log(response)
-        const l = "<label>" + selected + "</label>"
+        const recieved = JSON.parse(response)
+        const final = "<label> Root = " + recieved.final + "</label>"
+        const selectedLabel = "<label>" + selected + "</label>"
         $("#table-container").children().remove()
-        $("#table-container").append(l)
-        $("#table-container").append(response)
+        $("#table-container").append(selectedLabel)
+        $("#table-container").append(final)
+        $("#table-container").append(recieved.table)
         $("#table-container").hide()
         $("#table-container").fadeIn()
     })
