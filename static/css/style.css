@@ -75,6 +75,11 @@ body * {
   align-items: flex-end;
   gap: 0.15rem;
 }
+#field-container .left-var {
+  max-width: 50px;
+  text-align: right;
+  padding-right: 2px;
+}
 
 #buttons-container {
   display: flex;
