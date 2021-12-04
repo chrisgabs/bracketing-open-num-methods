@@ -64,3 +64,7 @@ body
         div.main-container(id="output-container")
             label Output:
             div#table-container
+            div#loading-container
+                img(src="{{ url_for('static',filename='res/loading.gif') }}" width="30px" height="30px")
+                label Computing...
+                label.small Infinite loading may be caused by invalid input

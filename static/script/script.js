@@ -1,4 +1,4 @@
-const fields = ["eq", "xu", "xl", "crit", "x"]
+const fields = ["eq", "xu", "xl", "crit", "x", "eq1l", "eq1r", "eq2l", "eq2r", "x0", "y0"]
 let selected = "Bisection"
 
 $(function() {
@@ -6,7 +6,12 @@ $(function() {
     updateInputFields()
     $("#selection").val(selected)
     
-    $("#calculate").on("click", () => onCalculate())
+    $("#calculate").on("click", () => {
+        $("#table-container").children().remove()
+        $("#table-container").append('<label">' + selected + "</label>")
+        $("#loading-container").show()
+        onCalculate()
+    })
     $("#clear").on("click", () => {
         fields.forEach(e => {
             const id = "#" + e;
@@ -21,17 +26,16 @@ $(function() {
 })
 
 function onCalculate() {
+    let data = new Object()
     let fields = []
+
     if (selected == "Non-linear") {
-        //TODO: Integrate non-linear
-        // fields = ["eq", "xu", "xl", "crit"]
+        fields = ["eq1l", "eq1r", "eq2l", "eq2r", "x0", "y0", "crit"]
     }else if (selected == "Simple Fix Iteration" || selected == "Newton Rhapson"){
         fields = ["eq", "x", "crit"]
     }else {
         fields = ["eq", "xu", "xl", "crit"]
     }
-
-    let data = new Object()
 
     fields.forEach(e => {
         const id = "#" + e
@@ -39,27 +43,14 @@ function onCalculate() {
     })
     data["selected"] = selected;
     data = JSON.stringify(data)
-    $.post("receiver", data, function(response) {
-        console.log(response)
-        let received = response;
-        $("#table-container").children().remove()
-        const selectedLabel = "<label>" + selected + "</label>"
-        $("#table-container").append(selectedLabel)
-        try {
-            received = JSON.parse(response)
-        }catch(err) {
-            $("#table-container").append(received)
-        }
-        const final = "<label> Root = " + received.final + "</label>"
-        $("#table-container").append(final)
-        $("#table-container").append(received.table)
-        $("#table-container").hide()
-        $("#table-container").fadeIn()
+    $.post("receiver", data, (response) => {
+        displayResponse(response)
     })
 }
 
 function updateInputFields() {
-    // $("#input-container").children().fadeOut();
+    $("#table-container").children().remove()
+    $("#loading-container").hide()
     if (selected == "Non-linear") {
         // six inputs
         $(".four-input").hide()
@@ -75,5 +66,23 @@ function updateInputFields() {
         $(".six-input").hide()
         $(".three-input").hide()
         $(".four-input").show()
+    }
+}
+
+function displayResponse(response) {
+    console.log(response)
+    let received = response;
+    try {
+        received = JSON.parse(response)
+    } catch (err) {
+        $("#table-container").append(received)
+    }
+    const final = "<label>" + received.final + "</label>"
+    $("#table-container").append(final)
+    $("#table-container").append(received.table)
+    $("#table-container").hide()
+    $("#table-container").fadeIn()
+    if(response != null) {
+        $("#loading-container").fadeOut('fast')
     }
 }

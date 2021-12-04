@@ -97,15 +97,19 @@ body {
     flex-direction: column;
     border-style: none;
     gap: 1rem;
+        div {
+            display: flex;
+            // border-style: dashed;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: .25rem;
+        }
 }
 
-#table-container {
-    display: flex;
-    // border-style: dashed;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .25rem;
+.small {
+    font-size: 16px;
+    color: #8e8e8e;
 }
 
 @media only screen and (max-width:723px) {

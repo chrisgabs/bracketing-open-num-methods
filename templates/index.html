@@ -80,6 +80,10 @@
     <div class="main-container" id="output-container">
       <label>Output:</label>
       <div id="table-container"></div>
+      <div id="loading-container"><img src="{{ url_for('static',filename='res/loading.gif') }}" width="30px" height="30px">
+        <label>Computing...</label>
+        <label class="small">Infinite loading may be caused by invalid input</label>
+      </div>
     </div>
   </div>
 </body>
