@@ -115,7 +115,7 @@ body * {
     width: max-content;
   }
 
-  #credits-container label {
+  #credits-container {
     font-size: 15px;
   }
 }
